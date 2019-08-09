@@ -41,8 +41,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, SinginActivity.class);
                 i.putExtra("email", loginUsernameEt.getText().toString());
-                startActivity(i);
+                startActivityForResult(i, 11);
+
             }
         });
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    if(requestCode == 11 && resultCode ==RESULT_OK){
+        String resultado = data.getExtras().getString("resultado");
+        Toast.makeText(this, resultado,  Toast.LENGTH_SHORT).show();
+    }
     }
 }
